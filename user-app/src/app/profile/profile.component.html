@@ -1,0 +1,10 @@
+<h2>User Profile</h2>
+
+<div *ngIf="user; else noUser">
+  <p><b>Username:</b> {{ user.username }}</p>
+  <p><b>Email:</b> {{ user.email }}</p>
+</div>
+
+<ng-template #noUser>
+  <p style="color:red">No user data found. Please login.</p>
+</ng-template>
