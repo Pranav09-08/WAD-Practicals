@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Pranav",
+    "designation": "Software Engineer",
+    "department": "IT",
+    "salary": 50000,
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "name": "Rahul",
+    "designation": "Manager",
+    "department": "HR",
+    "salary": 60000,
+    "image": "https://via.placeholder.com/150"
+  }
+]

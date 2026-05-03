@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body { font-family: Arial; text-align: center; }
+        input { padding: 10px; }
+        button { padding: 10px; margin: 5px; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 10px; }
+    </style>
+</head>
+
+<body>
+
+<h2>To-Do List</h2>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+
+<ul id="taskList"></ul>
+
+<script>
+
+// 🔹 "Server" (simulate backend)
+let tasks = [];
+
+// 🔹 AJAX simulation
+function ajaxCall(callback) {
+    setTimeout(callback, 300);
+}
+
+// 🔹 Display tasks
+function renderTasks() {
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
+
+    tasks.forEach((task, index) => {
+        list.innerHTML += `
+            <li>
+                ${task}
+                <button onclick="editTask(${index})">Edit</button>
+                <button onclick="deleteTask(${index})">Delete</button>
+            </li>
+        `;
+    });
+}
+
+// 🔹 Add Task
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const task = input.value;
+
+    if (task === "") return;
+
+    ajaxCall(() => {
+        tasks.push(task);
+        renderTasks();
+        input.value = "";
+    });
+}
+
+// 🔹 Edit Task
+function editTask(index) {
+    const newTask = prompt("Edit task:", tasks[index]);
+    if (newTask !== null) {
+        ajaxCall(() => {
+            tasks[index] = newTask;
+            renderTasks();
+        });
+    }
+}
+
+// 🔹 Delete Task
+function deleteTask(index) {
+    ajaxCall(() => {
+        tasks.splice(index, 1);
+        renderTasks();
+    });
+}
+
+</script>
+
+</body>
+</html>

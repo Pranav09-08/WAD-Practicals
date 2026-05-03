@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Directory</title>
+    <style>
+        body { font-family: Arial; }
+        .container { display: flex; gap: 20px; flex-wrap: wrap; }
+        .card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+        }
+        img { width: 100%; }
+    </style>
+</head>
+
+<body>
+
+<h2>Employee Directory</h2>
+
+<div class="container" id="employees"></div>
+
+<script>
+fetch("http://localhost:3000/employees")
+.then(res => res.json())
+.then(data => {
+    const container = document.getElementById("employees");
+
+    data.forEach(emp => {
+        container.innerHTML += `
+            <div class="card">
+                <img src="${emp.image}">
+                <h4>${emp.name}</h4>
+                <p>${emp.designation}</p>
+                <p>${emp.department}</p>
+                <p>₹${emp.salary}</p>
+            </div>
+        `;
+    });
+});
+</script>
+
+</body>
+</html>

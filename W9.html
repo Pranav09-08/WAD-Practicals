@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather App</title>
+        <style></style>
+    </head>
+
+
+    <body>
+        <h2>Weather Application</h2>
+
+        <input type="text" id ="city" placeholder="Enter city name">
+        <button onclick="getWeather()">Search</button>
+
+        <div id="result"></div>
+
+        <script>
+
+            const weatherData = {
+                pune : {temp:"30C",humidity:"60%",condition:"sunny"},
+                nashik : {temp:"32C",humidity:"70%",condition:"humid"},
+                mumbai : {temp:"27C",humidity:"80%",condition:"hot"},
+                delhi : {temp:"37C",humidity:"20%",condition:"sunny"},
+            }
+
+            function fetchWeather(city,callback){
+                setTimeout(()=>{
+                    callback(weatherData[city]);
+                },500);
+            }
+
+            function getWeather(){
+                const city = document.getElementById("city").value.toLowerCase();
+
+                fetchWeather(city,function(data){
+                    if(data){
+                        document.getElementById("result").innerHTML = `
+                        <div class="card">
+                            <h3>${city.toUpperCase()}</h3>
+                            <p>Temperature : ${data.temp}</p>
+                            <p>Humidity : ${data.humidity}</p>
+                            <p>Condition : ${data.condition}</p>
+                        </div>
+                        `;
+                    }
+                    else{
+                        document.getElementById("result").innerHTML=`<p>City not found</p>`;
+                    }
+                });
+            }
+
+        </script>
+
+
+    </body>
+</html>

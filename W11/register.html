@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+
+<h2>Registration</h2>
+
+<form onsubmit="registerUser(event)">
+    <input type="text" id="name" placeholder="Name" required><br>
+    <input type="email" id="email" placeholder="Email" required><br>
+    <input type="text" id="mobile" placeholder="Mobile" required pattern="[0-9]{10}"><br>
+    <input type="date" id="dob" required><br>
+    <input type="text" id="city" placeholder="City" required><br>
+    <input type="text" id="address" placeholder="Address" required><br>
+    <input type="text" id="username" placeholder="Username" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+
+    <button type="submit">Register</button>
+</form>
+
+<script>
+function registerUser(event) {
+    event.preventDefault();
+
+    let user = {
+        name: name.value,
+        email: email.value,
+        mobile: mobile.value,
+        dob: dob.value,
+        city: city.value,
+        address: address.value,
+        username: username.value,
+        password: password.value
+    };
+
+    // AJAX simulation
+    setTimeout(() => {
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Registered Successfully");
+        window.location = "login.html";
+    }, 500);
+}
+</script>
+
+</body>
+</html>

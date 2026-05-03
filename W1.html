@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Catalog</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            width: 30%;
+            height: 30%;
+        }
+
+        .pagination {
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Product Catalog</h2>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Price ($)</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="pagination">
+        <button onclick="prevPage()">Prev</button>
+        <span id="pageInfo"></span>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+
+    <script>
+        const products = [
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Wireless Headphones", price: 7999, desc: "Noise-cancelling headphones" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Smartwatch", price: 12999, desc: "Fitness tracking smartwatch" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Gaming Mouse", price: 2499, desc: "Ergonomic mouse" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Laptop Stand", price: 1999, desc: "Adjustable stand" },
+
+            // duplicate to simulate >10 products
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Keyboard", price: 1499, desc: "Mechanical keyboard" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Monitor", price: 9999, desc: "24 inch display" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "USB Hub", price: 999, desc: "Multiport hub" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Speaker", price: 2999, desc: "Bluetooth speaker" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Webcam", price: 3999, desc: "HD webcam" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Tablet", price: 15999, desc: "Android tablet" },
+            { img: "Pranav_Mahale_IDcard.jpg", name: "Phone", price: 20999, desc: "Smartphone" }
+        ];
+
+        let currentPage = 1;
+        let rowsPerPage = 10;
+
+        function displayProducts() {
+            const tableBody = document.querySelector("#productTable tbody");
+            tableBody.innerHTML = "";
+
+            let start = (currentPage - 1) * rowsPerPage;
+            let end = start + rowsPerPage;
+
+            let paginatedItems = products.slice(start, end);
+
+            paginatedItems.forEach(p => {
+                let row = `<tr>
+                    <td><img src="${p.img}"></td>
+                    <td>${p.name}</td>
+                    <td>${p.price}</td>
+                    <td>${p.desc}</td>
+                    </tr>`;
+                tableBody.innerHTML += row;
+            });
+
+            document.getElementById("pageInfo").innerText =
+                `Page ${currentPage} of ${Math.ceil(products.length / rowsPerPage)}`;
+        }
+
+        function nextPage() {
+            if (currentPage < Math.ceil(products.length / rowsPerPage)) {
+                currentPage++;
+                displayProducts();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayProducts();
+            }
+        }
+        displayProducts();
+
+
+    </script>
+</body>
+
+</html>

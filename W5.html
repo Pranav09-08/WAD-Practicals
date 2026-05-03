@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>E-commerce Product Listing</title>
+
+        <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container my-4">
+
+            <!-- Header -->
+             <h2 class="text-center mb-4">E-commerce Product Listing</h2>
+             
+            <!--Filter Dropdown-->
+            <div class ="d-flex justify-content-end mb-3">
+                <div class="dropdown">
+                    <button class ="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                        Filter by Category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" onclick="filterProducts('all')">All</a></li>
+                        <li><a class="dropdown-item" onclick="filterProducts('electronics')">Electronics</a></li>
+                        <li><a class="dropdown-item" onclick="filterProducts('fashion')">Fashion</a></li>
+                        <li><a class="dropdown-item" onclick="filterProducts('home')">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row" id ="productContainer">
+
+                <div class="col-md-4 col-sm-6 mb-4 product" data-category="electronics">
+                    <div class="card">
+                        <img src="Pranav_Mahale_IDcard.jpg">
+                        <div class="card-body">
+                            <h5 class="card-title">Smartphone</h5>
+                            <p class="card-text">Latest Android smartphone</p>
+                            <p class="fw-bold">$20,999</p>
+                            <button class ="btn btn-success w-100">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4 product" data-category="electronics">
+                    <div class="card">
+                        <img src="Pranav_Mahale_IDcard.jpg">
+                         <div class="card-body">
+                            <h5 class="card-title">Headphones</h5>
+                            <p class="card-text">Noise Cancelling headphones</p>
+                            <p class="fw-bold">$7,999</p>
+                            <button class ="btn btn-success w-100">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4 product" data-category="fashion">
+                    <div class="card">
+                        <img src="Pranav_Mahale_IDcard.jpg">
+                         <div class="card-body">
+                            <h5 class="card-title">T-shirt</h5>
+                            <p class="card-text">Cotton Casual Wear</p>
+                            <p class="fw-bold">$999</p>
+                            <button class ="btn btn-success w-100">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4 product" data-category="home">
+                    <div class="card">
+                        <img src="Pranav_Mahale_IDcard.jpg">
+                         <div class="card-body">
+                            <h5 class="card-title">Mixer Grinder</h5>
+                            <p class="card-text">Kitchen essential appliance</p>
+                            <p class="fw-bold">$3,499</p>
+                            <button class ="btn btn-success w-100">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            function filterProducts(category)
+            {
+                let products = document.querySelectorAll(".product");
+
+                products.forEach(p =>{
+                    if(category == "all" || p.dataset.category === category){
+                        p.style.display ="block";
+                    }else{
+                        p.style.display="none";
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
